@@ -34,28 +34,3 @@ func main() {
 	hoxy.LogGamePackets(true)
 	hoxy.Start()
 }
-
-// read a file from specified location
-func readFileIntoList(fileloc string) []string {
-	// open file from string and check for errors
-	fr, err := os.Open(fileloc)
-	utils.Check(err)
-
-	// create a new buffered reader
-	bufr := bufio.NewReader(fr)
-
-	// create the finished []string
-	var list []string
-	// loop counter
-	for {
-		// initialize buffers and read a line from a file in a loop
-		dat, err := bufr.ReadString('\n')
-		if err == io.EOF {
-			break
-		}
-		utils.Check(err)
-		list = append(list, string(dat))
-	}
-
-	return list
-}
